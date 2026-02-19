@@ -1,6 +1,6 @@
 # HW-03a - GitHub API
 
-[![Travis Build Status](https://travis-ci.com/halabasuny/HW-03a.svg?branch=HW03a_Mocking)](https://travis-ci.com/halabasuny/HW-03a)
+[![GitHub Actions](https://github.com/halabasuny/HW-03a/actions/workflows/tests.yml/badge.svg?branch=HW03a_Mocking)](https://github.com/halabasuny/HW-03a/actions?query=branch%3AHW03a_Mocking)
 
 ## Overview
 
