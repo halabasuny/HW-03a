@@ -1,4 +1,5 @@
 import unittest
+from unittest.mock import patch
 from github_api import get_repos_and_commit_counts, GitHubApiError
 
 
@@ -42,7 +43,9 @@ class TestGitHubApi(unittest.TestCase):
             commits_sq: FakeResponse(200, [{}] * 27),  # 27
         })
 
-        result = get_repos_and_commit_counts(user, session=fake)
+        with patch('github_api.requests.Session', return_value=fake):
+            result = get_repos_and_commit_counts(user)
+
         self.assertIn(("Triangle567", 10), result)
         self.assertIn(("Square567", 27), result)
         self.assertEqual(len(result), 2)
@@ -62,8 +65,9 @@ class TestGitHubApi(unittest.TestCase):
             repos_url: FakeResponse(404, {"message": "Not Found"})
         })
 
-        with self.assertRaises(GitHubApiError) as ctx:
-            get_repos_and_commit_counts(user, session=fake)
+        with patch('github_api.requests.Session', return_value=fake):
+            with self.assertRaises(GitHubApiError) as ctx:
+                get_repos_and_commit_counts(user)
 
         self.assertIn("404", str(ctx.exception))
 
@@ -75,8 +79,9 @@ class TestGitHubApi(unittest.TestCase):
             repos_url: FakeResponse(403, {"message": "rate limit"})
         })
 
-        with self.assertRaises(GitHubApiError) as ctx:
-            get_repos_and_commit_counts(user, session=fake)
+        with patch('github_api.requests.Session', return_value=fake):
+            with self.assertRaises(GitHubApiError) as ctx:
+                get_repos_and_commit_counts(user)
 
         self.assertIn("rate limit", str(ctx.exception).lower())
 
@@ -89,7 +94,9 @@ class TestGitHubApi(unittest.TestCase):
             f"https://api.github.com/repos/{user}/GoodRepo/commits": FakeResponse(200, [{}] * 3),
         })
 
-        result = get_repos_and_commit_counts(user, session=fake)
+        with patch('github_api.requests.Session', return_value=fake):
+            result = get_repos_and_commit_counts(user)
+
         self.assertEqual(result, [("GoodRepo", 3)])
 
     def test_pagination_for_repos(self):
@@ -108,7 +115,9 @@ class TestGitHubApi(unittest.TestCase):
             f"https://api.github.com/repos/{user}/R2/commits": FakeResponse(200, [{}, {}]),
         })
 
-        result = get_repos_and_commit_counts(user, session=fake)
+        with patch('github_api.requests.Session', return_value=fake):
+            result = get_repos_and_commit_counts(user)
+
         self.assertEqual(sorted(result), [("R1", 1), ("R2", 2)])
 
 
