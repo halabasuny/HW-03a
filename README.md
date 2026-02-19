@@ -1,12 +1,10 @@
 # HW-03a - GitHub API
 
-[![Build Status](https://travis-ci.com/halabasuny/HW-03a.svg?branch=main)](https://travis-ci.com/halabasuny/HW-03a)
+[![Tests](https://github.com/halabasuny/HW-03a/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/halabasuny/HW-03a/actions/workflows/tests.yml)
 
 ## Overview
 
 This project implements a Python function that interfaces with the GitHub REST API to retrieve repository information and commit counts for a given GitHub user.
-
-[![Tests](https://github.com/halabasuny/HW-03a/actions/workflows/tests.yml/badge.svg)](https://github.com/halabasuny/HW-03a/actions)
 
 **Tests Status:** All 6 unit tests passing ✅
 
