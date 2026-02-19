@@ -1,6 +1,6 @@
 # HW-03a - GitHub API
 
-[![Build Status](https://travis-ci.com/YOUR_USERNAME/spring2026.svg?branch=main)](https://travis-ci.com/YOUR_USERNAME/spring2026)
+[![Build Status](https://travis-ci.com/halabasuny/HW-03a.svg?branch=main)](https://travis-ci.com/halabasuny/HW-03a)
 
 ## Overview
 
